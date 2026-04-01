@@ -1,0 +1,36 @@
+name: code-review-env
+version: "1.0.0"
+description: >
+  An OpenEnv environment simulating real-world code review tasks.
+  An AI agent reviews Python code snippets, identifies bugs, suggests
+  fixes, and assesses code quality — tasks that mirror daily developer workflows.
+author: "your-hf-username"
+tags: [code-review, software-engineering, real-world]
+tasks:
+  - id: task_easy
+    name: "Bug Detection"
+    difficulty: easy
+    description: "Identify whether the code snippet contains a bug"
+  - id: task_medium
+    name: "Bug Fix"
+    difficulty: medium
+    description: "Identify the bug and provide the corrected code"
+  - id: task_hard
+    name: "Full Code Review"
+    difficulty: hard
+    description: "Detect bugs, suggest improvements, assess complexity, and rate overall quality"
+observation_space:
+  type: object
+  fields:
+    code_snippet: string
+    task_id: string
+    instructions: string
+    step_count: integer
+    feedback_history: array
+action_space:
+  type: object
+  fields:
+    action_type: "enum[analyze, fix, review, done]"
+    content: string
+    confidence: float
+reward_range: [0.0, 1.0]
